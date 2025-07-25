@@ -42,7 +42,7 @@ function loadCanticos() {
             'creio.jpeg',
             'tu_es_a_razao_da_jornada_novo.jpeg'
         ],
-        'Ato Penitencial': [
+        'Ato_Penitencial': [
             'conheco_um_coracao.pdf',
             'coracoes_arrependidos.pdf',
             'kyrie_eleison_jmj.pdf',
@@ -55,7 +55,7 @@ function loadCanticos() {
             'senhor_tende_piedade_perdoai_nossa_culpa.pdf',
             'senhor_que_viestes_salvar_novo.jpeg'
         ],
-        'Glória': [
+        'Gloria': [
             'a_ele_seja_a_gloria.pdf',
             'gloria_a_deus_nas_alturas.pdf',
             'gloria_a_deus_nas_alturas__rock_balada.pdf',
@@ -63,7 +63,7 @@ function loadCanticos() {
             'gloria_a_deus_nas_alturas_novo.jpeg',
             'gloria_continuacao.jpeg'
         ],
-        'Aclamação Evangelho': [
+        'Aclamacao_Evangelho': [
             'a_minhalma_abrirei.pdf',
             'a_vossa_palavra_senhor.pdf',
             'aleluia_como_o_pai_me_amou.pdf',
@@ -76,7 +76,7 @@ function loadCanticos() {
             'vinde_espirito_de_deus.pdf',
             'a_vossa_palavra_senhor_novo.jpeg'
         ],
-        'Ofertório': [
+        'Ofertorio': [
             'de_maos_estendidas.pdf',
             'meu_coracao_eh_para_ti.pdf',
             'minha_vida_tem_sentido.pdf',
@@ -122,7 +122,7 @@ function loadCanticos() {
             'eis_que_sou_o_pao_da_vida.jpeg',
             'todo_aquele_que_comer.jpeg'
         ],
-        'Abraço de Paz': [
+        'Abraco_de_Paz': [
             'esteja_sempre_com_voce.pdf',
             'irmao_minha_paz_eu_te_dou.pdf',
             'paz_paz_de_cristo.pdf'
@@ -138,7 +138,7 @@ function loadCanticos() {
             'tomado_pela_mao.pdf',
             'tu_es_razao_jornada.pdf'
         ],
-        'Cantos Marianos': [
+        'Cantos_Marianos': [
             'a_escolhida.pdf',
             'ave_cheia_de_graca.pdf',
             'imaculada_maria_de_deus.pdf',
@@ -146,7 +146,7 @@ function loadCanticos() {
             'santa_mae_maria.pdf',
             'santa_maria_vem.pdf'
         ],
-        'Louvor e Meditação': [
+        'Louvor_e_Meditacao': [
             'Desamarrem_as_sandálias.pdf',
             'a_alegria_esta_no_coracao.pdf',
             'a_nos_descei_divina_luz.pdf',
@@ -167,7 +167,7 @@ function loadCanticos() {
             'tao_sublime.pdf',
             'vou-cantar-teu-amor.pdf'
         ],
-        'Ação de graças': [
+        'Acao_de_gracas': [
             'deus_esta_aqui.pdf',
             'e_impossivel_nao_crer_em_ti.pdf',
             'espirito_santo.pdf',
