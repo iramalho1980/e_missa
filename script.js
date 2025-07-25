@@ -20,24 +20,27 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // Carregar cânticos da estrutura de pastas
 function loadCanticos() {
-    // Estrutura baseada na análise da pasta extraída
+    // Estrutura reorganizada na sequência da missa do tempo comum
     canticosData = {
-        'Abraço de Paz': [
-            'esteja_sempre_com_voce.pdf',
-            'irmao_minha_paz_eu_te_dou.pdf',
-            'paz_paz_de_cristo.pdf'
-        ],
-        'Aclamação Evangelho': [
-            'a_minhalma_abrirei.pdf',
-            'a_vossa_palavra_senhor.pdf',
-            'aleluia_como_o_pai_me_amou.pdf',
-            'buscai_primeiro_o_reino_de_deus.pdf',
-            'como_sao_belos.pdf',
-            'eu_vim_para_escutar.pdf',
-            'palavra_de_salvacao.pdf',
-            'que_alegria_cristo_ressurgiu.pdf',
-            'vai_falar_no_evangelho.pdf',
-            'vinde_espirito_de_deus.pdf'
+        'Entrada': [
+            'a_biblia_e_a_palavra_de_deus.pdf',
+            'bom_pastor.pdf',
+            'coração_santo.pdf',
+            'cristo_ressucitou_aleluia.pdf',
+            'deixa_a_luz_do_ceu_entrar.pdf',
+            'eis_me_aqui_senhor.pdf',
+            'esatremos_aqui_reunidos.pdf',
+            'faco_novas_todas_as_coisas.pdf',
+            'hosana_hey_hosana_ha.pdf',
+            'por_sua_morte.pdf',
+            'porque_ele_vive.pdf',
+            'senhor_quem_entrara.pdf',
+            'te_amarei.pdf',
+            'toda_biblia_e_comunicacao.pdf',
+            'tu_es_a_razao_da_jornada.pdf',
+            'vem_louvar.pdf',
+            'creio.jpeg',
+            'tu_es_a_razao_da_jornada_novo.jpeg'
         ],
         'Ato Penitencial': [
             'conheco_um_coracao.pdf',
@@ -49,21 +52,49 @@ function loadCanticos() {
             'renovame_ii.pdf',
             'senhor_que_viestes_salvar_kirie_elleisson.pdf',
             'senhor_tende_piedade_de_nos.pdf',
-            'senhor_tende_piedade_perdoai_nossa_culpa.pdf'
+            'senhor_tende_piedade_perdoai_nossa_culpa.pdf',
+            'senhor_que_viestes_salvar_novo.jpeg'
         ],
-        'Ação de graças': [
-            'deus_esta_aqui.pdf',
-            'e_impossivel_nao_crer_em_ti.pdf',
-            'espirito_santo.pdf',
-            'obrigado_senhor.pdf'
+        'Glória': [
+            'a_ele_seja_a_gloria.pdf',
+            'gloria_a_deus_nas_alturas.pdf',
+            'gloria_a_deus_nas_alturas__rock_balada.pdf',
+            'gloria_ao_pai_criador.pdf',
+            'gloria_a_deus_nas_alturas_novo.jpeg',
+            'gloria_continuacao.jpeg'
         ],
-        'Cantos Marianos': [
-            'a_escolhida.pdf',
-            'ave_cheia_de_graca.pdf',
-            'imaculada_maria_de_deus.pdf',
-            'maria_de_nazare.pdf',
-            'santa_mae_maria.pdf',
-            'santa_maria_vem.pdf'
+        'Aclamação Evangelho': [
+            'a_minhalma_abrirei.pdf',
+            'a_vossa_palavra_senhor.pdf',
+            'aleluia_como_o_pai_me_amou.pdf',
+            'buscai_primeiro_o_reino_de_deus.pdf',
+            'como_sao_belos.pdf',
+            'eu_vim_para_escutar.pdf',
+            'palavra_de_salvacao.pdf',
+            'que_alegria_cristo_ressurgiu.pdf',
+            'vai_falar_no_evangelho.pdf',
+            'vinde_espirito_de_deus.pdf',
+            'a_vossa_palavra_senhor_novo.jpeg'
+        ],
+        'Ofertório': [
+            'de_maos_estendidas.pdf',
+            'meu_coracao_eh_para_ti.pdf',
+            'minha_vida_tem_sentido.pdf',
+            'muitos_graos_de_trigo.pdf',
+            'ofertas_singelas.pdf',
+            'sabes_senhor.pdf',
+            'um_coracao_para_amar.pdf',
+            'os_dons_que_trago_aqui.jpeg'
+        ],
+        'Santo': [
+            'hosana_eh.pdf',
+            'hosana_no_alto_ceu.pdf',
+            'o_senhor_eh_santo.pdf',
+            'santo_santo_e.pdf',
+            'santo_santo_santo_eh_o_senhor_novo.jpeg'
+        ],
+        'Cordeiro': [
+            'cordeiro_do_maior.pdf'
         ],
         'Comunhão': [
             'a_barca.pdf',
@@ -87,32 +118,14 @@ function loadCanticos() {
             'sim_eu_quero.pdf',
             'sonda_me.pdf',
             'vem_eu_mostrarei.pdf',
-            'vou_cantar_teu_amor.pdf'
+            'vou_cantar_teu_amor.pdf',
+            'eis_que_sou_o_pao_da_vida.jpeg',
+            'todo_aquele_que_comer.jpeg'
         ],
-        'Cordeiro': [
-            'cordeiro_do_maior.pdf'
-        ],
-        'Diversos': [
-            'podes_reinar.pdf',
-            'prova_de_amor.pdf'
-        ],
-        'Entrada': [
-            'a_biblia_e_a_palavra_de_deus.pdf',
-            'bom_pastor.pdf',
-            'coração_santo.pdf',
-            'cristo_ressucitou_aleluia.pdf',
-            'deixa_a_luz_do_ceu_entrar.pdf',
-            'eis_me_aqui_senhor.pdf',
-            'esatremos_aqui_reunidos.pdf',
-            'faco_novas_todas_as_coisas.pdf',
-            'hosana_hey_hosana_ha.pdf',
-            'por_sua_morte.pdf',
-            'porque_ele_vive.pdf',
-            'senhor_quem_entrara.pdf',
-            'te_amarei.pdf',
-            'toda_biblia_e_comunicacao.pdf',
-            'tu_es_a_razao_da_jornada.pdf',
-            'vem_louvar.pdf'
+        'Abraço de Paz': [
+            'esteja_sempre_com_voce.pdf',
+            'irmao_minha_paz_eu_te_dou.pdf',
+            'paz_paz_de_cristo.pdf'
         ],
         'Final': [
             'a_alegria_esta_no_coracao.pdf',
@@ -125,11 +138,13 @@ function loadCanticos() {
             'tomado_pela_mao.pdf',
             'tu_es_razao_jornada.pdf'
         ],
-        'Glória': [
-            'a_ele_seja_a_gloria.pdf',
-            'gloria_a_deus_nas_alturas.pdf',
-            'gloria_a_deus_nas_alturas__rock_balada.pdf',
-            'gloria_ao_pai_criador.pdf'
+        'Cantos Marianos': [
+            'a_escolhida.pdf',
+            'ave_cheia_de_graca.pdf',
+            'imaculada_maria_de_deus.pdf',
+            'maria_de_nazare.pdf',
+            'santa_mae_maria.pdf',
+            'santa_maria_vem.pdf'
         ],
         'Louvor e Meditação': [
             'Desamarrem_as_sandálias.pdf',
@@ -152,20 +167,16 @@ function loadCanticos() {
             'tao_sublime.pdf',
             'vou-cantar-teu-amor.pdf'
         ],
-        'Ofertório': [
-            'de_maos_estendidas.pdf',
-            'meu_coracao_eh_para_ti.pdf',
-            'minha_vida_tem_sentido.pdf',
-            'muitos_graos_de_trigo.pdf',
-            'ofertas_singelas.pdf',
-            'sabes_senhor.pdf',
-            'um_coracao_para_amar.pdf'
+        'Ação de graças': [
+            'deus_esta_aqui.pdf',
+            'e_impossivel_nao_crer_em_ti.pdf',
+            'espirito_santo.pdf',
+            'obrigado_senhor.pdf',
+            'so_em_ti.jpeg'
         ],
-        'Santo': [
-            'hosana_eh.pdf',
-            'hosana_no_alto_ceu.pdf',
-            'o_senhor_eh_santo.pdf',
-            'santo_santo_e.pdf'
+        'Diversos': [
+            'podes_reinar.pdf',
+            'prova_de_amor.pdf'
         ]
     };
 
@@ -378,10 +389,18 @@ function updateMissaOrder() {
     }));
 }
 
-// Abrir PDF no popup
+// Abrir PDF ou imagem no popup
 function openPDF(filename, category) {
-    const pdfPath = `Letras/[+] Letras/${category}/${filename}`;
-    pdfViewer.src = pdfPath;
+    const filePath = `letras/${category}/${filename}`;
+    const fileExtension = filename.split('.').pop().toLowerCase();
+    
+    if (fileExtension === 'pdf') {
+        pdfViewer.src = filePath;
+    } else if (fileExtension === 'jpeg' || fileExtension === 'jpg') {
+        // Para imagens, criar um elemento img dentro do iframe
+        pdfViewer.src = `data:text/html,<html><body style="margin:0;padding:20px;background:#f0f0f0;display:flex;justify-content:center;align-items:center;min-height:100vh;"><img src="${filePath}" style="max-width:100%;max-height:100%;object-fit:contain;" alt="Cântico"></body></html>`;
+    }
+    
     popup.classList.add('show');
     
     // Adicionar efeito de fade in
