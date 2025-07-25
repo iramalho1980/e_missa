@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-Missa</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu+Mono&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>E-Missa: Organização de Cânticos</h1>
+            <input type="text" id="search-input" placeholder="Pesquisar cântico...">
+        </header>
+        
+        <main>
+            <section id="canticos-section">
+                <h2>Relação de Cânticos</h2>
+                <div id="canticos-list" class="grid-container">
+                    <!-- Cânticos serão carregados aqui dinamicamente -->
+                </div>
+            </section>
+
+            <section id="missa-section">
+                <h2>Missa</h2>
+                <div id="missa-order" class="drop-zone">
+                    <!-- Cânticos da missa serão arrastados para cá -->
+                </div>
+                <button id="save-missa">Salvar Ordem da Missa</button>
+            </section>
+        </main>
+    </div>
+
+    <div id="popup" class="popup-container">
+        <div class="popup-content">
+            <span class="close-button">&times;</span>
+            <iframe id="pdf-viewer" src="" frameborder="0"></iframe>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script src="github-integration.js"></script>
+</body>
+</html>
+
