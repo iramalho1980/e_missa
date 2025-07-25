@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Organizador de Cânticos - E-Missa</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Ubuntu Mono', monospace;
+            background: linear-gradient(135deg, #000000 0%, #2c2c2c 50%, #c0c0c0 100%);
+            min-height: 100vh;
+            color: #ffffff;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            color: #ffff00;
+            text-shadow: 0 0 20px #ffff00;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            color: #ffffff;
+            font-size: 1.1rem;
+        }
+
+        .search-container {
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .search-box {
+            width: 100%;
+            max-width: 600px;
+            padding: 15px 20px;
+            font-family: 'Ubuntu Mono', monospace;
+            font-size: 1.1rem;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 2px solid #ffff00;
+            border-radius: 25px;
+            color: #ffffff;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+
+        .search-box::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .search-box:focus {
+            border-color: #ffffff;
+            box-shadow: 0 0 20px rgba(255, 255, 0, 0.5);
+        }
+
+        .main-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .canticos-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .categoria-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(15px);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .categoria-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        .categoria-header {
+            padding: 20px;
+            background: linear-gradient(135deg, rgba(255, 255, 0, 0.2), rgba(255, 255, 255, 0.1));
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .categoria-header h3 {
+            color: #ffff00;
+            font-size: 1.3rem;
+            text-shadow: 0 0 10px #ffff00;
+        }
+
+        .categoria-toggle {
+            color: #ffffff;
+            font-size: 1.5rem;
+            transition: transform 0.3s ease;
+        }
+
+        .categoria-toggle.expanded {
+            transform: rotate(180deg);
+        }
+
+        .categoria-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+
+        .categoria-content.expanded {
+            max-height: 400px;
+            overflow-y: auto;
+        }
+
+        .cantico-item {
+            padding: 12px 20px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            cursor: grab;
+            transition: all 0.3s ease;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .cantico-item:hover {
+            background: rgba(255, 255, 255, 0.1);
+            color: #ffff00;
+        }
+
+        .cantico-item:active {
+            cursor: grabbing;
+        }
+
+        .cantico-item:last-child {
+            border-bottom: none;
+        }
+
+        .cantico-name {
+            flex: 1;
+            font-size: 0.95rem;
+        }
+
+        .cantico-actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn-view {
+            background: rgba(255, 255, 255, 0.2);
+            border: 1px solid #ffffff;
+            color: #ffffff;
+            padding: 5px 10px;
+            border-radius: 10px;
+            font-family: 'Ubuntu Mono', monospace;
+            font-size: 0.8rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-view:hover {
+            background: #ffffff;
+            color: #000000;
+        }
+
+        .missa-section {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(15px);
+            border-radius: 20px;
+            border: 2px solid #ffff00;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            padding: 20px;
+            min-height: 600px;
+        }
+
+        .missa-header {
+            text-align: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid rgba(255, 255, 0, 0.3);
+        }
+
+        .missa-header h2 {
+            color: #ffff00;
+            font-size: 1.8rem;
+            text-shadow: 0 0 15px #ffff00;
+            margin-bottom: 10px;
+        }
+
+        .missa-content {
+            min-height: 500px;
+            border: 2px dashed rgba(255, 255, 255, 0.3);
+            border-radius: 15px;
+            padding: 20px;
+            position: relative;
+        }
+
+        .missa-content.drag-over {
+            border-color: #ffff00;
+            background: rgba(255, 255, 0, 0.1);
+        }
+
+        .missa-placeholder {
+            text-align: center;
+            color: rgba(255, 255, 255, 0.6);
+            font-style: italic;
+            margin-top: 50px;
+        }
+
+        .missa-item {
+            background: rgba(255, 255, 255, 0.15);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 10px;
+            padding: 12px 15px;
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+
+        .missa-item:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .missa-item-name {
+            flex: 1;
+            color: #ffffff;
+        }
+
+        .missa-item-category {
+            color: #ffff00;
+            font-size: 0.8rem;
+            margin-right: 10px;
+        }
+
+        .btn-remove {
+            background: rgba(255, 0, 0, 0.3);
+            border: 1px solid #ff0000;
+            color: #ffffff;
+            padding: 5px 8px;
+            border-radius: 5px;
+            font-family: 'Ubuntu Mono', monospace;
+            font-size: 0.8rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-remove:hover {
+            background: #ff0000;
+        }
+
+        .controls {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .btn-control {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 2px solid #ffff00;
+            color: #ffff00;
+            padding: 12px 25px;
+            border-radius: 15px;
+            font-family: 'Ubuntu Mono', monospace;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-control:hover {
+            background: #ffff00;
+            color: #000000;
+            box-shadow: 0 0 20px rgba(255, 255, 0, 0.5);
+        }
+
+        .popup-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(5px);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .popup-overlay.show {
+            display: flex;
+            opacity: 1;
+        }
+
+        .popup-content {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            border: 2px solid #ffff00;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+            max-width: 90%;
+            max-height: 90%;
+            overflow: hidden;
+            transform: scale(0.8);
+            transition: transform 0.3s ease;
+        }
+
+        .popup-overlay.show .popup-content {
+            transform: scale(1);
+        }
+
+        .popup-header {
+            background: linear-gradient(135deg, #000000, #2c2c2c);
+            color: #ffff00;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .popup-title {
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+
+        .btn-close {
+            background: none;
+            border: none;
+            color: #ffffff;
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 5px;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-close:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .pdf-viewer {
+            width: 800px;
+            height: 600px;
+            border: none;
+        }
+
+        @media (max-width: 768px) {
+            .main-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .canticos-section {
+                grid-template-columns: 1fr;
+            }
+            
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .pdf-viewer {
+                width: 100%;
+                height: 500px;
+            }
+        }
+
+        .hidden {
+            display: none !important;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>🎵 Organizador de Cânticos</h1>
+            <p>Sistema moderno para organização de cânticos litúrgicos</p>
+        </header>
+
+        <div class="search-container">
+            <input type="text" class="search-box" placeholder="🔍 Pesquisar cânticos por nome ou conteúdo..." id="searchInput">
+        </div>
+
+        <div class="main-content">
+            <div class="canticos-section" id="canticosSection">
+                <!-- Categorias serão geradas dinamicamente pelo JavaScript -->
+            </div>
+
+            <div class="missa-section">
+                <div class="missa-header">
+                    <h2>📋 Ordem da Missa</h2>
+                    <p>Arraste os cânticos aqui para criar a ordem da celebração</p>
+                </div>
+                <div class="missa-content" id="missaContent">
+                    <div class="missa-placeholder" id="missaPlaceholder">
+                        Arraste os cânticos das categorias para aqui
+                    </div>
+                </div>
+                <div class="controls">
+                    <button class="btn-control" onclick="salvarMissa()">💾 Salvar Missa</button>
+                    <button class="btn-control" onclick="limparMissa()">🗑️ Limpar</button>
+                    <button class="btn-control" onclick="exportarMissa()">📤 Exportar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Popup para visualização de PDFs -->
+    <div class="popup-overlay" id="pdfPopup">
+        <div class="popup-content">
+            <div class="popup-header">
+                <div class="popup-title" id="popupTitle">Visualizar Cântico</div>
+                <button class="btn-close" onclick="fecharPopup()">✕</button>
+            </div>
+            <iframe class="pdf-viewer" id="pdfViewer" src=""></iframe>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
